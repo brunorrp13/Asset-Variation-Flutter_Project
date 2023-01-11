@@ -1,6 +1,12 @@
 {   
+    "day": "day",
+    "date": "date",
+    "value": "value",
+    "dOne": "D-1",
+    "assetDataNotFound": "Data for the inserted asset not found",
+    "assetTypying": "Type the asset: ",
+    "firstDateVar": "F. Dt Var",
     "getAssetPrice": "Get Asset Price",
-    "petr4": "PETR4",
     "assetChange": "Asset Change",
     "priceVariation": "Price Variation",
     "variationGraph": "Variation Graph",
