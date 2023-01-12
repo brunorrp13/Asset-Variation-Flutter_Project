@@ -4,7 +4,7 @@ App de consulta a API do Yahoo Finance https://finance.yahoo.com/. O App foi fei
 
 # Cenário positivo:
 
-<img width="456" alt="image" src="https://user-images.githubusercontent.com/69281497/211948917-609913fe-7c80-490d-9b62-ed3ab10cb06f.png">
+<img width="451" alt="image" src="https://user-images.githubusercontent.com/69281497/211949139-213cb6ff-69c3-44c4-851e-620816762ac2.png">
 
 # Cenário negativo:
 
