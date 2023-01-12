@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_variacao_do_ativo/app/day_item.dart';
-import 'package:flutter_variacao_do_ativo/app/day_item_header.dart';
+import 'package:flutter_variacao_do_ativo/bloc/assets.state.dart';
+import 'package:flutter_variacao_do_ativo/bloc/assets_bloc.dart';
+import 'package:flutter_variacao_do_ativo/bloc/assets_event.dart';
+import 'package:flutter_variacao_do_ativo/components/day_item.dart';
+import 'package:flutter_variacao_do_ativo/components/day_item_header.dart';
 import 'package:flutter_variacao_do_ativo/model/stock_history_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -15,6 +19,7 @@ class PriceVariationPage extends StatefulWidget {
 }
 
 class _PriceVariationPageState extends State<PriceVariationPage> {
+  AssetsBloc get _bloc => BlocProvider.of<AssetsBloc>(context);
   late TextEditingController _controller;
   List<StockHistoryModel> _stockHistory = [];
   bool _isLoading = false;
@@ -27,6 +32,32 @@ class _PriceVariationPageState extends State<PriceVariationPage> {
 
   @override
   Widget build(BuildContext context) {
+    return _builder();
+  }
+
+  BlocBuilder _builder() {
+    return BlocBuilder<AssetsBloc, AssetsState>(
+        bloc: _bloc,
+        builder: (BuildContext context, AssetsState state) {
+          if (state is OnNoDataFound) {
+            _handleNullValue();
+          }
+          if (state is SuccessfullyLoadedContentState<OnAssetsDataFound>) {
+            _handleChart(state.content.assetsResponse?.chartQuotes,
+                state.content.assetsResponse?.currency ?? "");
+            _isLoading = false;
+            return _content();
+          }
+          if (state is LoadingState) {
+            _isLoading = true;
+            return _content();
+          }
+          _isLoading = false;
+          return _content();
+        });
+  }
+
+  Widget _content() {
     return Padding(
         padding: const EdgeInsets.only(left: 10.0, top: 30.0, right: 10.0),
         child: Column(children: [
@@ -45,7 +76,7 @@ class _PriceVariationPageState extends State<PriceVariationPage> {
           ),
           if (_stockHistory.isNotEmpty)
             const Padding(
-              padding: EdgeInsets.only(top: 16.0),
+              padding: EdgeInsets.only(top: 16.0, bottom: 8),
               child: DayItemHeader(),
             ),
           if (_isLoading) _loader(),
@@ -67,32 +98,21 @@ class _PriceVariationPageState extends State<PriceVariationPage> {
         ]));
   }
 
-  Future<void> _getPriceVariation(String stock) async {
-    setState(() {
-      _isLoading = true;
-    });
+  void _getPriceVariation(String stock) {
     _stockHistory = [];
-    var yfin = YahooFin();
-    StockHistory hist = yfin.initStockHistory(ticker: stock);
-    StockChart chart = await yfin.getChartQuotes(
-        stockHistory: hist,
-        interval: StockInterval.oneDay,
-        period: StockRange.oneMonth);
-    _handleChart(chart.chartQuotes);
+    _bloc.add(OnFindAssets(stock));
   }
 
-  void _handleChart(ChartQuotes? chart) {
-    setState(() {
-      _isLoading = false;
-    });
+  void _handleChart(ChartQuotes? chart, String currency) {
     if (chart != null && chart.open != null && chart.open!.isNotEmpty) {
       var counter = 0;
       final now = DateTime.now();
+      var days = (chart.open!.length >= 30) ? 29 : chart.open!.length - 1;
 
-      for (var i = chart.open!.length - 1; i >= 0; i--) {
+      for (var i = days; i >= 0; i--) {
         var itemDate = getFormatedDate(
             DateTime(now.year, now.month, now.day - i).toString());
-        var itemValue = "R\$ ${chart.open![counter].toStringAsFixed(2)}";
+        var itemValue = "$currency ${chart.open![counter].toStringAsFixed(2)}";
         var itemDVariation = "";
         var itemFirstDateVariation = "";
         if (counter != 0) {
@@ -108,9 +128,6 @@ class _PriceVariationPageState extends State<PriceVariationPage> {
             firstDateVariation: itemFirstDateVariation));
         counter++;
       }
-      setState(() {
-        _stockHistory;
-      });
     } else {
       _handleNullValue();
     }
@@ -139,9 +156,9 @@ class _PriceVariationPageState extends State<PriceVariationPage> {
     return output;
   }
 
-  String getFormatedDate(String _date) {
+  String getFormatedDate(String date) {
     var inputFormat = DateFormat('yyyy-MM-dd HH:mm');
-    var inputDate = inputFormat.parse(_date);
+    var inputDate = inputFormat.parse(date);
     var outputFormat = DateFormat('dd/MM/yyyy');
     return outputFormat.format(inputDate);
   }

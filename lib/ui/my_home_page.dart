@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       centerTitle: false,
       title: Center(
         child: Text(
-          "${AppLocalizations.of(context)?.assetChange ?? ""}",
+          AppLocalizations.of(context)?.assetChange ?? "",
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,

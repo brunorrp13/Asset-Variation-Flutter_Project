@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_variacao_do_ativo/bloc/assets_bloc.dart';
+import 'package:flutter_variacao_do_ativo/repository/assets_repository.dart';
 import 'package:flutter_variacao_do_ativo/ui/my_home_page.dart';
 
 void main() {
@@ -22,7 +25,12 @@ class _AppSetupState extends State<_AppSetup> {
 
   @override
   Widget build(BuildContext context) {
-    return _content();
+    return MultiBlocProvider(providers: [
+      BlocProvider<AssetsBloc>(
+          create: (BuildContext context) => AssetsBloc(
+                repository: AssetsRepository(),
+              ))
+    ], child: _content());
   }
 
   MaterialApp _content() {
@@ -51,6 +59,6 @@ class _AppSetupState extends State<_AppSetup> {
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green),
           fontFamily: 'Nunito',
         ),
-        home: MyHomePage());
+        home: const MyHomePage());
   }
 }
