@@ -4,11 +4,16 @@ App de consulta a API do Yahoo Finance https://finance.yahoo.com/. O App foi fei
 
 # Cenário positivo:
 
-<img width="404" alt="image" src="https://user-images.githubusercontent.com/69281497/211947531-9e522e18-b728-4a63-8e9c-b928f01b3fdc.png">
+<img width="456" alt="image" src="https://user-images.githubusercontent.com/69281497/211948917-609913fe-7c80-490d-9b62-ed3ab10cb06f.png">
 
 # Cenário negativo:
 
-<img width="456" alt="image" src="https://user-images.githubusercontent.com/69281497/211947574-2873a9e8-0aac-415b-9d48-8cd1e9a7601d.png">
+<img width="442" alt="image" src="https://user-images.githubusercontent.com/69281497/211948994-131d25b4-3108-414e-99bf-659efcda970c.png">
+
+# Loading:
+
+<img width="464" alt="image" src="https://user-images.githubusercontent.com/69281497/211948973-c9790dfc-37b6-49ea-b74c-963eb0e71393.png">
+
 
 ## Getting Started
 
