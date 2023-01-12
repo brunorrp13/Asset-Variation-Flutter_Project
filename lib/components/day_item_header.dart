@@ -11,7 +11,7 @@ class DayItemHeader extends StatelessWidget {
     return Row(
       children: [
         Wrap(
-          spacing: 40,
+          spacing: 39,
           children: [
             Text(
               AppLocalizations.of(context)?.day ?? "",
