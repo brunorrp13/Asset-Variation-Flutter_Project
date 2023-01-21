@@ -53,8 +53,9 @@ class _AppSetupState extends State<_AppSetup> {
           Locale('pt', 'BR'),
         ],
         theme: ThemeData(
+          primaryColor: Colors.white,
           appBarTheme: const AppBarTheme(
-            color: Colors.blue,
+            color: Colors.blueGrey,
           ),
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green),
           fontFamily: 'Nunito',

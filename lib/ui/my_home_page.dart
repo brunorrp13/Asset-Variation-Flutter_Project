@@ -2,43 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_variacao_do_ativo/ui/price_variation_page.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: _appBar(),
-          body: PriceVariationPage(),
-        ));
+    return MaterialApp(
+        home: Scaffold(
+      appBar: _appBar(context),
+      body: const PriceVariationPage(),
+    ));
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(BuildContext context) {
     return AppBar(
-      shape: Border(bottom: BorderSide(color: Colors.grey.withOpacity(.2))),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(6),
+      )),
       centerTitle: false,
       title: Center(
         child: Text(
           AppLocalizations.of(context)?.assetChange ?? "",
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
             fontWeight: FontWeight.bold,
             fontSize: 22.0,
             letterSpacing: -1,
@@ -49,7 +36,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       iconTheme: const IconThemeData(
         color: Colors.black,
       ),
-      backgroundColor: Colors.white,
     );
   }
 }
