@@ -4,8 +4,7 @@ Yahoo Finance API assets variation app (https://finance.yahoo.com/). The App was
 
 # Main Screen:
 
-<img width="448" alt="image" src="https://user-images.githubusercontent.com/69281497/213923770-2010cb1a-0be8-4226-a931-8f3e0f7b3863.png">
-
+<img width="435" alt="image" src="https://user-images.githubusercontent.com/69281497/213923836-349a03a9-945e-44ca-8372-1f01114963c7.png">
 
 # Positive scenario:
 
