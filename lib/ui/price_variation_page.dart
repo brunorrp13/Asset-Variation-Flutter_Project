@@ -70,6 +70,7 @@ class _PriceVariationPageState extends State<PriceVariationPage> {
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: ElevatedButton(
+              key: const Key("btnAssets"),
               onPressed: () => _getPriceVariation(_controller.text),
               child: Text(AppLocalizations.of(context)?.getAssetPrice ?? ""),
             ),

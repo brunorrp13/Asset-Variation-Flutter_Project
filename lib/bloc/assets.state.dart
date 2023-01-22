@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_variacao_do_ativo/model/stock_response_model.dart';
 import 'package:yahoofin/yahoofin.dart';
 
-abstract class AssetsState {}
+abstract class AssetsState extends Equatable {}
 
 class InitialState extends AssetsState {
   @override

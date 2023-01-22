@@ -13,9 +13,9 @@ class AssetsBloc extends Bloc<AssetsEvent, AssetsState> {
     on<OnFindAssets>((event, emit) async {
       emit(LoadingState());
       try {
-        final StrockResponseModel response =
+        final StrockResponseModel? response =
             await repository.getChartQuotes(event.stock);
-        if (response.chartQuotes == null) {
+        if (response == null || response.chartQuotes == null) {
           emit(OnNoDataFound());
           return;
         }
