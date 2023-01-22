@@ -1,4 +1,4 @@
-# flutter_variacao_do_ativo
+# Assets Variation - Flutter App
 
 Yahoo Finance API assets variation app (https://finance.yahoo.com/). The App was made in Flutter and has a TextField which allows typing of an asset. If the asset is valid, it brings the price of the asset for the last 30 days with the percentage of price variation from one day to the next and the percentage since the first trading session presented. If the name of the asset entered is not valid, a message is displayed by Toast informing that the asset was not found. AppLocalizations were used for the Strings used (which are in Portuguese and also translated into English) and it also uses the Bloc Pattern (with a test class that I also created for it).
 
