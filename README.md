@@ -4,20 +4,19 @@ Yahoo Finance API assets variation app (https://finance.yahoo.com/). The App was
 
 # Main Screen:
 
-<img width="435" alt="image" src="https://user-images.githubusercontent.com/69281497/213923836-349a03a9-945e-44ca-8372-1f01114963c7.png">
-
-# Positive scenario:
-
-<img width="451" alt="image" src="https://user-images.githubusercontent.com/69281497/211949139-213cb6ff-69c3-44c4-851e-620816762ac2.png">
-
-# Negative scenario:
-
-<img width="442" alt="image" src="https://user-images.githubusercontent.com/69281497/211948994-131d25b4-3108-414e-99bf-659efcda970c.png">
+<img width="439" alt="image" src="https://user-images.githubusercontent.com/69281497/214378681-82d420b8-e87f-437f-931a-7d4f2fb00d36.png">
 
 # Loading:
 
-<img width="464" alt="image" src="https://user-images.githubusercontent.com/69281497/211948973-c9790dfc-37b6-49ea-b74c-963eb0e71393.png">
+<img width="445" alt="image" src="https://user-images.githubusercontent.com/69281497/214378745-9ee229ff-fbc5-4e0d-a4ca-9158af9ba99e.png">
 
+# Positive scenario:
+
+<img width="443" alt="image" src="https://user-images.githubusercontent.com/69281497/214378814-554e24f4-bfc5-4d42-b875-5e12887a7edd.png">
+
+# Negative scenario:
+
+<img width="445" alt="image" src="https://user-images.githubusercontent.com/69281497/214378901-0223acd6-b455-4cb5-9c4e-559bddb9eac5.png">
 
 ## Getting Started
 
