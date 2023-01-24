@@ -58,45 +58,47 @@ class _PriceVariationPageState extends State<PriceVariationPage> {
   }
 
   Widget _content() {
-    return Padding(
-        padding: const EdgeInsets.only(left: 10.0, top: 30.0, right: 10.0),
-        child: Column(children: [
-          TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                labelText: AppLocalizations.of(context)?.assetTypying ?? "",
-              )),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: ElevatedButton(
-              key: const Key("btnAssets"),
-              onPressed: () => _getPriceVariation(_controller.text),
-              child: Text(AppLocalizations.of(context)?.getAssetPrice ?? ""),
+    return Scaffold(
+      body: Padding(
+          padding: const EdgeInsets.only(left: 10.0, top: 30.0, right: 10.0),
+          child: Column(children: [
+            TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: AppLocalizations.of(context)?.assetTypying ?? "",
+                )),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ElevatedButton(
+                key: const Key("btnAssets"),
+                onPressed: () => _getPriceVariation(_controller.text),
+                child: Text(AppLocalizations.of(context)?.getAssetPrice ?? ""),
+              ),
             ),
-          ),
-          if (_stockHistory.isNotEmpty)
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0, bottom: 8),
-              child: DayItemHeader(),
-            ),
-          if (_isLoading) _loader(),
-          if (_stockHistory.isNotEmpty)
-            Expanded(
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _stockHistory.length,
-                  itemBuilder: (context, index) {
-                    return DayItem(
-                        day: (index + 1).toString(),
-                        date: _stockHistory[index].date,
-                        amount: _stockHistory[index].value,
-                        dOneVariation: _stockHistory[index].dVariation,
-                        firstDayVariation:
-                            _stockHistory[index].firstDateVariation);
-                  }),
-            )
-        ]));
+            if (_stockHistory.isNotEmpty)
+              const Padding(
+                padding: EdgeInsets.only(top: 16.0, bottom: 8),
+                child: DayItemHeader(),
+              ),
+            if (_isLoading) _loader(),
+            if (_stockHistory.isNotEmpty)
+              Expanded(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _stockHistory.length,
+                    itemBuilder: (context, index) {
+                      return DayItem(
+                          day: (index + 1).toString(),
+                          date: _stockHistory[index].date,
+                          amount: _stockHistory[index].value,
+                          dOneVariation: _stockHistory[index].dVariation,
+                          firstDayVariation:
+                              _stockHistory[index].firstDateVariation);
+                    }),
+              )
+          ])),
+    );
   }
 
   void _getPriceVariation(String stock) {
